@@ -1,5 +1,4 @@
-const students = ['bryan89tran']
-var students = ["https://github.com/bseitz754",
+const students = ["https://github.com/bseitz754",
     "https://github.com/bpham2002",
     "https://github.com/cameron4k",
     "https://github.com/chieuduy",
@@ -15,7 +14,7 @@ var students = ["https://github.com/bseitz754",
     "https://github.com/jodecile84",
     "https://github.com/JodeciLe84",
     "https://github.com/Dev533",
-"https://github.com/jgsilverman",
+    "https://github.com/jgsilverman",
     "https://github.com/jphamxuan",
     "https://github.com/khurlock",
     "https://github.com/MariGMartinez",
@@ -27,10 +26,12 @@ var students = ["https://github.com/bseitz754",
     "https://github.com/thomasseaman",
     "https://github.com/vfgonzalez",
     "https://github.com/yunwhyjay"]
+
 const randomStudent = students[Math.floor(Math.random() * students.length)]
+const userName = randomStudent.split(".com/").pop()
 
 function findStudent() {
-    fetch('https://api.github.com/users/' + randomStudent)
+    fetch('https://api.github.com/users/' + userName)
     .then(data => data.json())
     .then(data => {
         console.log(data)
