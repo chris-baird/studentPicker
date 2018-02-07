@@ -1,4 +1,4 @@
-const students = ['wesbos', 'bryan89tran']
+const students = ['bryan89tran']
 const randomStudent = students[Math.floor(Math.random() * students.length)]
 
 function findStudent() {
