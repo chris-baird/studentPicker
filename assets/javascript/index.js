@@ -1,4 +1,5 @@
-const students = ["https://github.com/bseitz754",
+const students = [
+    "https://github.com/bseitz754",
     "https://github.com/bpham2002",
     "https://github.com/cameron4k",
     "https://github.com/chieuduy",
@@ -25,27 +26,32 @@ const students = ["https://github.com/bseitz754",
     "https://github.com/pujasodha",
     "https://github.com/thomasseaman",
     "https://github.com/vfgonzalez",
-    "https://github.com/yunwhyjay"]
+    "https://github.com/yunwhyjay"
+   ]
 
 function findStudent() {
     
-    //randomly grabbing studet's username
-    const randomStudent = students[Math.floor(Math.random() * students.length)]
-    const userName = randomStudent.split(".com/").pop()
+    
+        //randomly grabbing studet's username
+        const randomStudent = students[Math.floor(Math.random() * students.length)];
+        const userName = randomStudent.split(".com/").pop();
 
-    //api call to github to grab username and picture
-    fetch('https://api.github.com/users/' + userName)
-    .then(data => data.json())
-    .then(data => {
-        console.log(data)
-        
-        //check if null ? "true":"false";
-        const displayName = data.name ? data.name : userName;
-        
-        document.getElementsByTagName('h1')[0].innerHTML = displayName;
-        //document.getElementsByTagName('h1')[1].innerHTML = userName
-        document.getElementsByTagName('img')[0].src = data.avatar_url;
-    });
+                // //remove students who were already called    
+        const index = students.indexOf(randomStudent);
+        if (index > -1) students.splice(index, 1); 
+        //api call to github to grab username and picture
+        fetch('https://api.github.com/users/' + userName)
+        .then(data => data.json())
+        .then(data => {
+            console.log(data)
+
+            //check if null ? "true":"false";
+            const displayName = data.name ? data.name : userName;
+            
+            document.getElementsByTagName('h1')[1].innerHTML = displayName;
+            document.getElementsByTagName('img')[0].src = data.avatar_url;
+        })
+        if(students.length === 0) document.getElementsByTagName('h1')[0].innerHTML = 'Last Question'
 }
 
 document.getElementsByTagName('span')[1].addEventListener('click', findStudent)
